@@ -52,8 +52,9 @@ public abstract class LivingEntityMixin extends Entity {
     private void getEquipmentChangesMixin(CallbackInfoReturnable<Map<EquipmentSlot, ItemStack>> info, Map map, EquipmentSlot var2[], int var3, int var4, EquipmentSlot equipmentSlot,
             ItemStack itemStack) {
         Iterator<EntityAttributeModifier> iterator = itemStack.getAttributeModifiers(equipmentSlot).values().iterator();
-        while (iterator.hasNext())
-            if (iterator.next().getName().contains("tiered:")) {
+        while (iterator.hasNext()) {
+            String entityAttributeModifierName = iterator.next().getName();
+            if (entityAttributeModifierName.contains("tiered:") || entityAttributeModifierName.contains("attribute.name.generic.max_health")) {
                 if ((Object) this instanceof ServerPlayerEntity) {
                     boolean syncHealth = getEquippedStack(equipmentSlot).isEmpty();
                     if (!syncHealth) {
@@ -80,6 +81,7 @@ public abstract class LivingEntityMixin extends Entity {
                 }
                 break;
             }
+        }
     }
 
     @Shadow
