@@ -96,7 +96,7 @@ public class ModifierUtils {
     }
 
     public static void setItemStackAttribute(@Nullable PlayerEntity playerEntity, ItemStack stack, boolean reforge) {
-        if (stack.getSubNbt(Tiered.NBT_SUBTAG_KEY) == null) {
+        if (stack.getSubNbt(Tiered.NBT_SUBTAG_KEY) == null && !stack.isIn(TieredItemTags.MODIFIER_RESTRICTED)) {
 
             // attempt to get a random tier
             Identifier potentialAttributeID = ModifierUtils.getRandomAttributeIDFor(playerEntity, stack.getItem(), reforge);

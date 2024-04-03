@@ -1,6 +1,6 @@
 ### Added:
-- 
+- Added modifier restriction item tag 
 ### Fixed:
-- Fixed bclib incompat
+- 
 ### Changed:
 - 

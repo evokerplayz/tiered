@@ -76,10 +76,10 @@ public class ReforgeScreenHandler extends ScreenHandler {
     }
 
     private void updateResult() {
+        ItemStack stack = this.getSlot(1).getStack();
         if (this.getSlot(0).hasStack() && this.getSlot(1).hasStack() && this.getSlot(2).hasStack()) {
-            Item item = this.getSlot(1).getStack().getItem();
-            if (ModifierUtils.getRandomAttributeIDFor(null, item, false) != null && !this.getSlot(1).getStack().isDamaged()) {
-
+            Item item = stack.getItem();
+            if (!stack.isIn(TieredItemTags.MODIFIER_RESTRICTED) && ModifierUtils.getRandomAttributeIDFor(null, item, false) != null && !stack.isDamaged()) {
                 List<Item> items = Tiered.REFORGE_DATA_LOADER.getReforgeBaseItems(item);
                 ItemStack baseItem = this.getSlot(0).getStack();
                 if (!items.isEmpty()) {
@@ -97,8 +97,7 @@ public class ReforgeScreenHandler extends ScreenHandler {
         } else {
             this.reforgeReady = false;
         }
-        if (this.reforgeReady && !ConfigInit.CONFIG.uniqueReforge && ModifierUtils.getAttributeID(this.getSlot(1).getStack()) != null
-                && ModifierUtils.getAttributeID(this.getSlot(1).getStack()).getPath().contains("unique")) {
+        if (this.reforgeReady && !ConfigInit.CONFIG.uniqueReforge && ModifierUtils.getAttributeID(stack) != null && ModifierUtils.getAttributeID(stack).getPath().contains("unique")) {
             this.reforgeReady = false;
         }
         TieredServerPacket.writeS2CReforgeReadyPacket((ServerPlayerEntity) player, !this.reforgeReady);

@@ -112,7 +112,8 @@ Example:
 #### Reforge
 
 Reforging items to get other tiers can be done at the anvil. There is a slot which is called "base" on the left and a slot called "addition" on the right.
-The addition slot can only contain items which are stated in the `tiered:reforge_addition` item tag. The base slot can contain the reforging item material item if existent, otherwise it can only contain `tiered:reforge_base_item` tag items. The base slot item can get changed via datapack, an example can be found below and has to get put in the `tiered:reforge_items` folder.
+The addition slot can only contain items which are stated in the `tiered:reforge_addition` item tag. The base slot can contain the reforging item material item if existent, otherwise it can only contain `tiered:reforge_base_item` tag items. The base slot item can get changed via datapack, an example can be found below and has to get put in the `tiered:reforge_items` folder.  
+The `tiered:modifier_restricted` item tag can be used to restrict item modifiers including reforging.
 
 ```json
 {
